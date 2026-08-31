@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barreau de Port-au-Prince</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0d1b5e;
+      --navy2: #162272;
+      --gold:  #c9a227;
+      --gold2: #e8bd3a;
+      --white: #ffffff;
+      --off:   #f4f6fb;
+      --gray:  #6b7280;
+      --dark:  #111827;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-logo-text {
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .btn-connexion {
+      background: var(--gold);
+      color: var(--navy) !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      font-size: 14px;
+      text-decoration: none;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+
+    .btn-connexion:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gold);
+    }
+
+    .hero-left {
+      padding: 80px 60px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-title em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 17px;
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); background: rgba(201,162,39,0.08); }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-seal {
+      width: min(340px, 80%);
+      opacity: 0.92;
+      filter: drop-shadow(0 0 60px rgba(201,162,39,0.2));
+    }
+
+    .hero-tagline {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--gold);
+      padding: 20px 80px;
+      display: flex;
+      gap: 0;
+      justify-content: space-around;
+    }
+
+    .stat {
+      text-align: center;
+      flex: 1;
+      border-right: 1px solid rgba(0,0,0,0.15);
+      padding: 8px 24px;
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    /* ── MISSION ── */
+    .mission {
+      padding: 100px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      background: var(--white);
+    }
+
+    .section-label {
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .section-body {
+      color: var(--gray);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .mission-values {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .value-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--navy);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+
+    .value-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .value-desc {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 100px 80px;
+      background: var(--off);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-top: 3px solid var(--gold);
+      padding: 32px 28px;
+    }
+
+    .service-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-currency {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray);
+    }
+
+    .service-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 100px 80px;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact .section-title { color: var(--white); }
+    .contact .section-body  { color: rgba(255,255,255,0.65); }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(201,162,39,0.15);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    .contact-value a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover { color: var(--gold); }
+
+    /* ── ADHESION CTA ── */
+    .cta {
+      background: var(--gold);
+      padding: 80px;
+      text-align: center;
+    }
+
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      color: rgba(13,27,94,0.75);
+      font-size: 17px;
+      margin-bottom: 36px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-navy:hover { background: var(--navy2); }
+
+    .btn-ghost {
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .btn-ghost:hover { background: rgba(13,27,94,0.08); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080e2e;
+      padding: 40px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-brand span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 24px 40px; }
+      .hero-right { padding: 40px 24px 60px; }
+      .hero-tagline { position: static; transform: none; margin-top: 16px; font-size: 16px; white-space: normal; }
+      .stats-bar { padding: 20px 24px; flex-wrap: wrap; gap: 8px; }
+      .mission { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .services { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .cta { padding: 60px 24px; }
+      footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div style="width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--navy);">B</div>
+    <div class="nav-logo-text">
+      Barreau
+      <span>de Port-au-Prince</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contacts</a></li>
+    <li><a class="btn-connexion" href="https://assochub.vercel.app/sign-in">Connexion →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Fondé en 1859 · Port-au-Prince, Haïti</span>
+    <h1 class="hero-title">
+      Bienvenue sur le site officiel du <em>Barreau</em> de Port-au-Prince
+    </h1>
+    <p class="hero-sub">
+      Le Barreau de Port-au-Prince a pour mission d'assurer la protection du public, de promouvoir l'accès à la justice et de défendre les principes fondamentaux de l'État de droit.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#contact">Nous contacter</a>
+      <a class="btn-outline" href="https://assochub.vercel.app/apply/barreau-pap-2">Demander l'adhésion</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg class="hero-seal" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="150" cy="150" r="145" fill="none" stroke="#c9a227" stroke-width="6"/>
+      <circle cx="150" cy="150" r="130" fill="rgba(201,162,39,0.08)" stroke="#c9a227" stroke-width="2"/>
+      <!-- Inner circle -->
+      <circle cx="150" cy="150" r="100" fill="rgba(13,27,94,0.6)" stroke="#c9a227" stroke-width="3"/>
+      <!-- Scales of justice -->
+      <line x1="150" y1="80" x2="150" y2="200" stroke="#c9a227" stroke-width="3"/>
+      <line x1="110" y1="110" x2="190" y2="110" stroke="#c9a227" stroke-width="3"/>
+      <circle cx="110" cy="135" r="18" fill="none" stroke="#c9a227" stroke-width="2"/>
+      <circle cx="190" cy="135" r="18" fill="none" stroke="#c9a227" stroke-width="2"/>
+      <line x1="110" y1="110" x2="110" y2="117" stroke="#c9a227" stroke-width="2"/>
+      <line x1="190" y1="110" x2="190" y2="117" stroke="#c9a227" stroke-width="2"/>
+      <!-- B monogram -->
+      <text x="150" y="195" text-anchor="middle" font-family="Playfair Display, serif" font-size="28" font-weight="700" fill="#c9a227">B</text>
+      <!-- Text arc top -->
+      <path id="top-arc" d="M 20,150 A 130,130 0 0,1 280,150" fill="none"/>
+      <text font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#c9a227" letter-spacing="3">
+        <textPath href="#top-arc" startOffset="10%">ORDRE DES AVOCATS</textPath>
+      </text>
+      <!-- Text arc bottom -->
+      <path id="bot-arc" d="M 25,160 A 125,125 0 0,0 275,160" fill="none"/>
+      <text font-family="Inter, sans-serif" font-size="12" font-weight="600" fill="#c9a227" letter-spacing="3">
+        <textPath href="#bot-arc" startOffset="12%">DE PORT-AU-PRINCE</textPath>
+      </text>
+    </svg>
+    <div class="hero-tagline">Nul n'est censé ignorer la loi</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">1859</div>
+    <div class="stat-label">Année de fondation</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">165+</div>
+    <div class="stat-label">Années d'existence</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Indépendance judiciaire</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">HAI</div>
+    <div class="stat-label">Port-au-Prince, Haïti</div>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div>
+    <span class="section-label"></span>
+    <h2 class="section-title">Notre mission au service de la justice</h2>
+    <p class="section-body">
+      Depuis 1859, le Barreau de Port-au-Prince veille à la dignité de la profession d'avocat, garantit l'accès à une représentation juridique de qualité et défend l'État de droit en Haïti.
+    </p>
+    <p class="section-body">
+      L'Ordre des Avocats encadre la pratique du droit sur le territoire de Port-au-Prince, assure la discipline de ses membres et représente la profession devant les pouvoirs publics.
+    </p>
+  </div>
+  <div class="mission-values">
+    <div class="value-item">
+      <div class="value-icon">⚖️</div>
+      <div>
+        <div class="value-title">Justice et équité</div>
+        <div class="value-desc">Défendre les droits fondamentaux de chaque citoyen, sans discrimination.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">🏛️</div>
+      <div>
+        <div class="value-title">État de droit</div>
+        <div class="value-desc">Promouvoir la primauté du droit comme pilier de la démocratie haïtienne.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">🤝</div>
+      <div>
+        <div class="value-title">Déontologie</div>
+        <div class="value-desc">Veiller au respect du Code d'éthique et des normes professionnelles.</div>
+      </div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">📚</div>
+      <div>
+        <div class="value-title">Formation continue</div>
+        <div class="value-desc">Soutenir le développement professionnel des avocats membres.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <span class="section-label" style="margin:0 auto 20px;"></span>
+    <h2 class="section-title">Tarifs et services</h2>
+    <p style="color:var(--gray);max-width:480px;margin:0 auto;font-size:15px;">Services administratifs disponibles aux membres et aux justiciables.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-price">500 <span class="service-currency">HTG</span></div>
+      <div class="service-name">Attestation de membre</div>
+      <div class="service-desc">Certificat confirmant le statut de membre actif au Barreau.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-price">1 500 <span class="service-currency">HTG</span></div>
+      <div class="service-name">Certificat de bonne conduite</div>
+      <div class="service-desc">Document attestant de la bonne conduite professionnelle.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-price">5 000 <span class="service-currency">HTG</span></div>
+      <div class="service-name">Inscription au tableau</div>
+      <div class="service-desc">Frais d'inscription au tableau de l'Ordre des Avocats.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-price">3 500 <span class="service-currency">HTG</span></div>
+      <div class="service-name">Renouvellement annuel</div>
+      <div class="service-desc">Cotisation annuelle de renouvellement de la licence.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-price">750 <span class="service-currency">HTG</span></div>
+      <div class="service-name">Frais de dossier</div>
+      <div class="service-desc">Frais administratifs de traitement de dossier.</div>
+    </div>
+    <div class="service-card" style="background:var(--navy);border-top-color:var(--gold);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:16px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white);">Vous souhaitez rejoindre le Barreau ?</div>
+      <a href="https://assochub.vercel.app/apply/barreau-pap-2" class="btn-primary" style="display:inline-block;">Déposer ma candidature</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div>
+    <span class="section-label"></span>
+    <h2 class="section-title">Nous contacter</h2>
+    <p class="section-body">
+      Le secrétariat du Barreau est ouvert du lundi au vendredi, de 8h à 16h. N'hésitez pas à nous écrire ou à vous présenter à nos bureaux.
+    </p>
+    <div style="margin-top:32px;">
+      <a href="https://assochub.vercel.app/sign-in" class="btn-primary" style="display:inline-block;">Accès membres →</a>
+    </div>
+  </div>
+  <div class="contact-items">
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Téléphone</div>
+        <div class="contact-value"><a href="tel:+50946846606">+509 46 84 66 06</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Courriel principal</div>
+        <div class="contact-value"><a href="mailto:info@barreaudeportauprince.com">info@barreaudeportauprince.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Courriel secondaire</div>
+        <div class="contact-value"><a href="mailto:barreaudeportauprince@gmail.com">barreaudeportauprince@gmail.com</a></div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Adresse</div>
+        <div class="contact-value">398, Avenue John Brown<br>Bourdon, Port-au-Prince, Haïti</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <h2 class="cta-title">Rejoignez l'Ordre des Avocats</h2>
+  <p class="cta-sub">Déposez votre candidature en ligne et intégrez la communauté des avocats du Barreau de Port-au-Prince.</p>
+  <div class="cta-actions">
+    <a class="btn-navy" href="https://assochub.vercel.app/apply/barreau-pap-2">Déposer ma candidature</a>
+    <a class="btn-ghost" href="https://assochub.vercel.app/sign-in">Déjà membre ? Se connecter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    Barreau de Port-au-Prince
+    <span>Ordre des Avocats · Fondé en 1859</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contacts</a></li>
+    <li><a href="https://assochub.vercel.app/apply/barreau-pap-2">Adhésion</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Barreau de Port-au-Prince. Tous droits réservés.</div>
+</footer>
+
+</body>
+</html>
