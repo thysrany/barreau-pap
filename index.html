@@ -77,7 +77,8 @@
     .section-body { color:var(--gray); font-size:16px; line-height:1.75; margin-bottom:16px; }
     .mission-values { display:flex; flex-direction:column; gap:20px; }
     .value-item { display:flex; gap:16px; align-items:flex-start; }
-    .value-icon { width:44px; height:44px; background:var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:20px; }
+    .value-icon { width:44px; height:44px; background:var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .value-icon svg { width:22px; height:22px; stroke:var(--gold); fill:none; stroke-width:1.8; }
     .value-title { font-weight:600; font-size:15px; color:var(--navy); margin-bottom:4px; }
     .value-desc { font-size:14px; color:var(--gray); line-height:1.5; }
 
@@ -96,7 +97,8 @@
     .contact .section-body { color:rgba(255,255,255,0.65); }
     .contact-items { display:flex; flex-direction:column; gap:24px; }
     .contact-item { display:flex; gap:16px; align-items:flex-start; }
-    .contact-icon { width:40px; height:40px; background:rgba(201,162,39,0.15); border:1px solid var(--gold); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:16px; }
+    .contact-icon { width:40px; height:40px; background:rgba(201,162,39,0.15); border:1px solid var(--gold); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .contact-icon svg { width:18px; height:18px; stroke:var(--gold); fill:none; stroke-width:1.8; }
     .contact-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); margin-bottom:4px; }
     .contact-value { font-size:15px; color:rgba(255,255,255,0.85); line-height:1.5; }
     .contact-value a { color:rgba(255,255,255,0.85); text-decoration:none; }
@@ -237,10 +239,10 @@
     <p class="section-body">L&#x2019;Ordre des Avocats encadre la pratique du droit dans la juridiction de Port-au-Prince, assure la discipline de ses membres et repr&#xe9;sente la profession devant les pouvoirs publics.</p>
   </div>
   <div class="mission-values">
-    <div class="value-item"><div class="value-icon">&#x2696;&#xfe0f;</div><div><div class="value-title">Justice et &#xe9;quit&#xe9;</div><div class="value-desc">D&#xe9;fendre les droits fondamentaux de chaque citoyen, sans discrimination.</div></div></div>
-    <div class="value-item"><div class="value-icon">&#x1f3db;&#xfe0f;</div><div><div class="value-title">&#xc9;tat de droit</div><div class="value-desc">Promouvoir la primaut&#xe9; du droit comme pilier de la d&#xe9;mocratie ha&#xef;tienne.</div></div></div>
-    <div class="value-item"><div class="value-icon">&#x1f91d;</div><div><div class="value-title">D&#xe9;ontologie</div><div class="value-desc">Veiller au respect du Code d&#x2019;&#xe9;thique et des normes professionnelles.</div></div></div>
-    <div class="value-item"><div class="value-icon">&#x1f4da;</div><div><div class="value-title">Formation continue</div><div class="value-desc">Soutenir le d&#xe9;veloppement professionnel des avocats membres.</div></div></div>
+    <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M7 21h10M12 3l-6 4M12 3l6 4M2 11l4-4 4 4M2 11l4 3.5M10 11l4-4M2 11h8M22 11l-4-4-4 4M22 11l-4 3.5M14 11h8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="14.5" r="1.5"/><circle cx="18" cy="14.5" r="1.5"/></svg></div><div><div class="value-title">Justice et &#xe9;quit&#xe9;</div><div class="value-desc">D&#xe9;fendre les droits fondamentaux de chaque citoyen, sans discrimination.</div></div></div>
+    <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21h18M4 21V10M20 21V10M2 10l10-6 10 6M6 10v7M10 10v7M14 10v7M18 10v7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">&#xc9;tat de droit</div><div class="value-desc">Promouvoir la primaut&#xe9; du droit comme pilier de la d&#xe9;mocratie ha&#xef;tienne.</div></div></div>
+    <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 12l5-3 4 2-3 3-6-2zM22 12l-5-3-4 2 3 3 6-2zM7 11l3 2h4l3-2M10 13v2a2 2 0 002 2 2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">D&#xe9;ontologie</div><div class="value-desc">Veiller au respect du Code d&#x2019;&#xe9;thique et des normes professionnelles.</div></div></div>
+    <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 16.5v3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">Formation continue</div><div class="value-desc">Soutenir le d&#xe9;veloppement professionnel des avocats membres.</div></div></div>
   </div>
 </section>
 
@@ -263,10 +265,10 @@
     <div style="margin-top:32px;"><a href="https://assochub.vercel.app/sign-in?org=barreau-pap-2" class="btn-primary">Acc&#xe8;s membres &#x2192;</a></div>
   </div>
   <div class="contact-items">
-    <div class="contact-item"><div class="contact-icon">&#x1f4de;</div><div><div class="contact-label">T&#xe9;l&#xe9;phone</div><div class="contact-value"><a href="tel:+50946846606">+509 46 84 66 06</a></div></div></div>
-    <div class="contact-item"><div class="contact-icon">&#x2709;&#xfe0f;</div><div><div class="contact-label">Courriel principal</div><div class="contact-value"><a href="mailto:info@barreaudeportauprince.com">info@barreaudeportauprince.com</a></div></div></div>
-    <div class="contact-item"><div class="contact-icon">&#x2709;&#xfe0f;</div><div><div class="contact-label">Courriel secondaire</div><div class="contact-value"><a href="mailto:barreaudeportauprince@gmail.com">barreaudeportauprince@gmail.com</a></div></div></div>
-    <div class="contact-item"><div class="contact-icon">&#x1f4cd;</div><div><div class="contact-label">Adresse</div><div class="contact-value">398, Avenue John Brown<br>Bourdon, Port-au-Prince, Ha&#xef;ti</div></div></div>
+    <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="contact-label">T&#xe9;l&#xe9;phone</div><div class="contact-value"><a href="tel:+50946846606">+509 46 84 66 06</a></div></div></div>
+    <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 6l10 7 10-7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="contact-label">Courriel principal</div><div class="contact-value"><a href="mailto:info@barreaudeportauprince.com">info@barreaudeportauprince.com</a></div></div></div>
+    <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 6l10 7 10-7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="contact-label">Courriel secondaire</div><div class="contact-value"><a href="mailto:barreaudeportauprince@gmail.com">barreaudeportauprince@gmail.com</a></div></div></div>
+    <div class="contact-item"><div class="contact-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="contact-label">Adresse</div><div class="contact-value">398, Avenue John Brown<br>Bourdon, Port-au-Prince, Ha&#xef;ti</div></div></div>
   </div>
 </section>
 
