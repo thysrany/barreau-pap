@@ -136,8 +136,11 @@
       .slide { padding:20px; }
       .slide-img { max-width:200px; max-height:220px; }
       .slide-gold-line { width:60%; margin:12px auto 8px; }
-      .slide-caption { font-size:16px; }
-      .slide-dots { bottom:8px; }
+      .slide-caption { font-size:16px; padding-bottom:48px; }
+      .slide-dots { bottom:auto; position:relative; transform:none; left:auto; margin:8px auto 0; display:flex; justify-content:center; }
+      .hero-right { min-height:auto; display:flex; flex-direction:column; align-items:center; padding-bottom:16px; }
+      .slide { position:relative; top:auto; left:auto; right:auto; bottom:auto; opacity:1; display:none; }
+      .slide.active { display:flex; }
 
       /* Stats */
       .stats-bar { padding:16px; flex-wrap:wrap; gap:0; }
