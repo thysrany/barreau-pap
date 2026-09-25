@@ -92,6 +92,19 @@
     .service-card-cta { background:var(--navy); border-top:3px solid var(--gold); padding:32px 24px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:16px; }
     .services-loading { text-align:center; color:var(--gray); font-size:15px; padding:40px; grid-column:1/-1; }
 
+    /* Events */
+    .events { padding:100px 80px; background:var(--white); }
+    .events-header { text-align:center; margin-bottom:60px; }
+    .event-featured { max-width:700px; margin:0 auto; background:var(--off); border-top:3px solid var(--gold); padding:36px 40px; }
+    .event-date-badge { display:block; color:var(--gold); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:10px; }
+    .event-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+    .event-location { font-size:13px; color:var(--gray); margin-bottom:14px; }
+    .event-desc { font-size:15px; color:var(--dark); line-height:1.6; margin-bottom:24px; }
+    .events-loading { text-align:center; color:var(--gray); font-size:15px; padding:40px; }
+    .events-archive-link { text-align:center; margin-top:28px; }
+    .events-archive-link a { color:var(--navy); font-weight:600; font-size:14px; text-decoration:none; }
+    .events-archive-link a:hover { color:var(--gold); }
+
     .contact { padding:100px 80px; background:var(--navy); display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
     .contact .section-title { color:var(--white); }
     .contact .section-body { color:rgba(255,255,255,0.65); }
@@ -164,6 +177,10 @@
       /* Services */
       .services { padding:48px 20px; }
       .services-grid { grid-template-columns:1fr; }
+
+      /* Events */
+      .events { padding:48px 20px; }
+      .event-featured { padding:28px 24px; }
 
       /* Contact */
       .contact { grid-template-columns:1fr; padding:48px 20px; gap:32px; }
@@ -243,6 +260,17 @@
     <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21h18M4 21V10M20 21V10M2 10l10-6 10 6M6 10v7M10 10v7M14 10v7M18 10v7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">&#xc9;tat de droit</div><div class="value-desc">Promouvoir la primaut&#xe9; du droit comme pilier de la d&#xe9;mocratie ha&#xef;tienne.</div></div></div>
     <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 12l5-3 4 2-3 3-6-2zM22 12l-5-3-4 2 3 3 6-2zM7 11l3 2h4l3-2M10 13v2a2 2 0 002 2 2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">D&#xe9;ontologie</div><div class="value-desc">Veiller au respect du Code d&#x2019;&#xe9;thique et des normes professionnelles.</div></div></div>
     <div class="value-item"><div class="value-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M4 4.5A2.5 2.5 0 016.5 2H20v17H6.5A2.5 2.5 0 004 16.5v3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="value-title">Formation continue</div><div class="value-desc">Soutenir le d&#xe9;veloppement professionnel des avocats membres.</div></div></div>
+  </div>
+</section>
+
+<section class="events" id="events">
+  <div class="events-header">
+    <span class="section-label" style="margin:0 auto 20px;"></span>
+    <h2 class="section-title">&#xc9;v&#xe9;nements</h2>
+    <p style="color:var(--gray);max-width:480px;margin:0 auto;font-size:15px;">Restez inform&#xe9; des prochains &#xe9;v&#xe9;nements du Barreau.</p>
+  </div>
+  <div id="event-featured">
+    <div class="events-loading">Chargement...</div>
   </div>
 </section>
 
@@ -336,6 +364,37 @@
     headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
   }).then(function(r) { return r.json(); }).then(renderServices).catch(function() {
     document.getElementById('services-grid').innerHTML = '<div class="services-loading">Impossible de charger les tarifs.</div>';
+  });
+
+  function fmtEventDate(d) {
+    var date = new Date(d + 'T00:00');
+    return date.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function renderFeaturedEvent(events) {
+    var el = document.getElementById('event-featured');
+    if (!events || events.length === 0) {
+      document.getElementById('events').style.display = 'none';
+      return;
+    }
+    var e = events[0];
+    var desc = e.description || '';
+    if (desc.length > 220) desc = desc.substring(0, 220) + '&hellip;';
+    var html = '<div class="event-featured">';
+    html += '<div class="event-date-badge">' + fmtEventDate(e.event_date) + '</div>';
+    html += '<div class="event-title">' + e.title + '</div>';
+    if (e.location) html += '<div class="event-location">' + e.location + '</div>';
+    if (desc) html += '<div class="event-desc">' + desc + '</div>';
+    html += '<a href="https://portal.barreaudeportauprince.com/public-events/barreau-pap-2/' + e.id + '" class="btn-navy">Lire la suite</a>';
+    html += '</div>';
+    html += '<div class="events-archive-link"><a href="https://portal.barreaudeportauprince.com/public-events/barreau-pap-2">Voir tous les &#xe9;v&#xe9;nements &rarr;</a></div>';
+    el.innerHTML = html;
+  }
+
+  fetch(SUPA_URL + '/rest/v1/public_events?organization_id=eq.' + ORG + '&is_published=eq.true&order=event_date.desc&limit=1', {
+    headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
+  }).then(function(r) { return r.json(); }).then(renderFeaturedEvent).catch(function() {
+    document.getElementById('events').style.display = 'none';
   });
 </script>
 </body>
